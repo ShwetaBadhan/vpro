@@ -28,14 +28,14 @@ if (isset($_POST['submit'])) {
     $mobile = $_POST['mobile'];
     $email = strip_tags($_POST['email']);
     $status = strip_tags($_POST['status']);
-    // $type = $_POST['brand'];
+    $type = $_POST['type'];
     $role = $_POST['admin_role'];
     $date = date('m-d-Y ');
     $activationToken = bin2hex(random_bytes(16));
 
     // Step 1: Insert into admin table (employee_id removed)
-    $query = "INSERT INTO admin (username, password, email, status, history, mobile, activation_token, admin_role)
-              VALUES ('$name', '$password', '$email', '$status', '$date', '$mobile', '$activationToken', '$role')";
+    $query = "INSERT INTO admin (username, password, email, status, history, mobile, type, activation_token, admin_role)
+              VALUES ('$name', '$password', '$email', '$status', '$type','$date', '$mobile', '$activationToken', '$role')";
     $result = mysqli_query($db, $query);
 
     if ($result) {

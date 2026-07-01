@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 //use PHPMailer\PHPMailer\PHPMailer;
 //use PHPMailer\PHPMailer\Exception;
 $msg = "";
-error_reporting(0);
+// error_reporting(0);
 
 if (!isset($_SESSION["login_user"])) {
     header("location: index.php");
@@ -20,9 +20,9 @@ require("db/config.php");
 
 // Register user
 if (isset($_POST['submit'])) {
-    echo '<pre>';
-    print_r($_POST);
-    exit;
+    // echo '<pre>';
+    // print_r($_POST);
+    // exit;
     $name = strip_tags($_POST['username']);
     $password = md5($_POST['password']);
     $mobile = $_POST['mobile'];
@@ -51,8 +51,8 @@ if (isset($_POST['submit'])) {
 
         $msg = "User has been successfully created.";
     } else {
-        $msg = "<div class='alert alert-danger'>Error in creating the user.</div>";
-    }
+    die("MySQL Error: " . mysqli_error($db));
+}
 }
 
 // Fetch roles from the database

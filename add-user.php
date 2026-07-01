@@ -30,24 +30,18 @@ if (isset($_POST['submit'])) {
     $status = strip_tags($_POST['status']);
     // $type = $_POST['brand'];
     $role = $_POST['admin_role'];
-    $employee_id = $_POST['employee_id'] ?? null; // may be null if not employee role
     $date = date('m-d-Y ');
     $activationToken = bin2hex(random_bytes(16));
 
-    // Step 1: Insert into admin table
-    $query = "INSERT INTO admin (username, password, email, status, history, mobile, activation_token, admin_role, employee_id)
-              VALUES ('$name', '$password', '$email', '$status', '$date', '$mobile', '$activationToken', '$role', '$employee_id')";
+    // Step 1: Insert into admin table (employee_id removed)
+    $query = "INSERT INTO admin (username, password, email, status, history, mobile, activation_token, admin_role)
+              VALUES ('$name', '$password', '$email', '$status', '$date', '$mobile', '$activationToken', '$role')";
     $result = mysqli_query($db, $query);
 
     if ($result) {
         $admin_id = mysqli_insert_id($db); // Get the newly inserted admin ID
 
-        // Step 2: If this is an employee role, update the personal_details table
-        if ($employee_id) {
-            $update = $db->prepare("UPDATE personal_details SET admin_id = ? WHERE personal_id = ?");
-            $update->bind_param("ii", $admin_id, $employee_id);
-            $update->execute();
-        }
+        // Employee update logic has been completely removed
 
         $msg = "User has been successfully created.";
     } else {
@@ -59,14 +53,14 @@ if (isset($_POST['submit'])) {
 $rolequery = "SELECT role_id,role_name FROM roles";
 $roleresult = mysqli_query($db, $rolequery);
 $query = "SELECT * FROM login_settings";
-    $settingsResult = mysqli_query($db, $query);
-    $settings = mysqli_fetch_assoc($settingsResult);
+$settingsResult = mysqli_query($db, $query);
+$settings = mysqli_fetch_assoc($settingsResult);
 
-    $logoPath = $settings['backend_panel_logo'];
-    $helpdeskNumber = $settings['helpdesk_no'];
-    $favicon = $settings['favicon'];
-    // echo $favicon;
-    // exit;
+$logoPath = $settings['backend_panel_logo'];
+$helpdeskNumber = $settings['helpdesk_no'];
+$favicon = $settings['favicon'];
+// echo $favicon;
+// exit;
 ?>
 
 <!DOCTYPE html>
@@ -74,12 +68,8 @@ $query = "SELECT * FROM login_settings";
 
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
-
-
 <head>
     <title>Add New Admin User </title>
-
-
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -92,7 +82,6 @@ $query = "SELECT * FROM login_settings";
 
     <link rel="stylesheet" href="assets/css/plugins/dataTables.bootstrap4.min.css">
 
-
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
@@ -100,7 +89,6 @@ $query = "SELECT * FROM login_settings";
             color: red;
         }
     </style>
-
 </head>
 
 <body class="">
@@ -112,17 +100,12 @@ $query = "SELECT * FROM login_settings";
     </div>
 
     <!-- Header -->
-    <?php
-    include("header.php");
-    ?>
+    <?php include("header.php"); ?>
     <!-- /Header -->
 
     <!-- navbar -->
-    <?php
-    include("navbar.php");
-    ?>
+    <?php include("navbar.php"); ?>
     <!-- /navbar -->
-
 
     <section class="pcoded-main-container">
         <div class="pcoded-content">
@@ -132,46 +115,31 @@ $query = "SELECT * FROM login_settings";
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10">Add New Admin User
-                                </h5>
+                                <h5 class="m-b-10">Add New Admin User</h5>
                             </div>
-                            <!--                             <ul class="breadcrumb"> -->
-                            <!--                                 <li class="breadcrumb-item"><a href="index.php"><i class="feather icon-home"></i></a> -->
-                            <!--                                 </li> -->
-
-                            <!--                             </ul> -->
                         </div>
                     </div>
                 </div>
             </div>
 
-
             <div class="row">
-
                 <div class="col-sm-12">
                     <div class="card">
 
-
                         <div class="card-header table-card-header">
                             <?php
-
                             echo "<span id='user-availability-status'></span>";
 
                             if ($msg) {
-
-
-
                                 echo " <div class='alert alert-success alert-dismissible fade show' role='alert' style='font-size:16px;' id='successMessage'>
-  <strong><i class='feather icon-check'></i>Thanks!</strong>$msg.
-  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-    <span aria-hidden='true'>&times;</span>
-  </button>
-</div> ";
+                                  <strong><i class='feather icon-check'></i>Thanks!</strong> $msg.
+                                  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                  </button>
+                                </div> ";
                             }
                             ?>
-
                             <br />
-
 
                             <form method="post" action="" enctype="multipart/form-data" autocomplete="off">
                                 <div class=" ">
@@ -179,35 +147,29 @@ $query = "SELECT * FROM login_settings";
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 col-12">
                                             <div class="form-group">Enter Username <span class="red-text">*</span>
-                                                <label class="sr-only control-label" for="name">Username<span class=" ">
-                                                    </span></label>
+                                                <label class="sr-only control-label" for="username">Username</label>
                                                 <input name="username" type="text" id="username" placeholder="Enter Username"
                                                     class="form-control input-md" onBlur="checkUserAvailability()"
                                                     required autocomplete="off"
                                                     oninvalid="this.setCustomValidity('Please Enter Username')"
                                                     oninput="setCustomValidity('')">
-                                                <p><img src="loader.gif" id="loader" style="display:none" /></p>
-
+                                                <!-- <p><img src="loader.gif" id="loader" style="display:none" /></p> -->
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 col-12">
                                             <div class="form-group">Enter Password <span class="red-text">*</span>
-                                                <label class="sr-only control-label" for="name">Password<span class=" ">
-                                                    </span></label>
-                                                <input id="name" name="password" type="password"
+                                                <label class="sr-only control-label" for="password">Password</label>
+                                                <input id="password" name="password" type="password"
                                                     placeholder=" Enter Password *" class="form-control input-md"
                                                     required oninvalid="this.setCustomValidity('Please Enter Password')"
                                                     oninput="setCustomValidity('')">
                                             </div>
                                         </div>
 
-
                                         <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 col-12">
                                             <div class="form-group">Mobile No <span class="red-text">*</span>
-                                                <label class="sr-only control-label" for="name">Mobile No<span
-                                                        class=" ">
-                                                    </span></label>
-                                                <input id="name" name="mobile" type="number"
+                                                <label class="sr-only control-label" for="mobile">Mobile No</label>
+                                                <input id="mobile" name="mobile" type="number"
                                                     placeholder=" Enter Mobile No *" class="form-control input-md"
                                                     required
                                                     oninvalid="this.setCustomValidity('Please Enter Mobile Number')"
@@ -215,23 +177,21 @@ $query = "SELECT * FROM login_settings";
                                             </div>
                                         </div>
 
-
-
                                         <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 col-12">
                                             <div class="form-group">Email <span class="red-text">*</span>
-                                                <label class="sr-only control-label" for="name">Email<span class=" ">
-                                                    </span></label>
-                                                <input id="name" name="email" type="email" class="form-control input-md"
+                                                <label class="sr-only control-label" for="email">Email</label>
+                                                <input id="email" name="email" type="email" class="form-control input-md"
                                                     required placeholder="Enter valid email address" autocomplete="off"
                                                     title="Enter valid Email Address"
                                                     oninvalid="this.setCustomValidity('Please Enter valid email address')"
                                                     oninput="setCustomValidity('')" pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
                                             </div>
                                         </div>
-                                        <!-- Dynamic Select for Course Types -->
+
+                                        <!-- Dynamic Select for Roles -->
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                             <div class="form-group">
-                                                <label for="role" class="form-label">Select Role<span class="red-text">*</span></label>
+                                                <label for="role_id" class="form-label">Select Role<span class="red-text">*</span></label>
                                                 <select class="form-control" id="role_id" name="admin_role" required>
                                                     <option value="" selected disabled>Choose a Role</option>
                                                     <?php
@@ -240,46 +200,33 @@ $query = "SELECT * FROM login_settings";
                                                             echo "<option value='" . $row['role_id'] . "'>" . $row['role_name'] . "</option>";
                                                         }
                                                     } else {
-                                                        echo "<option value='' disabled>No role  found</option>";
+                                                        echo "<option value='' disabled>No role found</option>";
                                                     }
                                                     ?>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" id="employeeDropdown" style="display: none;">
-                                            <div class="form-group">
-                                                <label for="employee_id" class="form-label">Select Employee<span class="red-text">*</span></label>
-                                                <select class="form-control" name="employee_id" id="employee_id">
-                                                    <option value="">Choose an Employee</option>
-                                                    <!-- Options will be filled dynamically -->
-                                                </select>
-                                            </div>
-                                        </div>
+                                        
+                                        <!-- Employee Dropdown has been completely removed -->
 
                                         <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 col-12">
                                             <div class="form-group">Status <span class="red-text">*</span>
-                                                <label class="sr-only control-label" for="name">Status<span class=" ">
-                                                    </span></label>
-                                                <select id="" name="status" class="form-control"
+                                                <label class="sr-only control-label" for="status">Status</label>
+                                                <select id="status" name="status" class="form-control"
                                                     oninvalid="this.setCustomValidity('Please Select Status')"
                                                     oninput="setCustomValidity('')" required>
                                                     <option value="">Choose</option>
                                                     <option value="1">Enable</option>
                                                     <option value="0">Disable</option>
-
                                                 </select>
                                             </div>
                                         </div>
 
-
                                         <!-- Button -->
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
                                             <button type="submit" class="btn btn-secondary" name="submit" id="submit">
                                                 <i class="feather icon-save lg"></i>&nbsp; Add Admin User
                                             </button>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -287,26 +234,17 @@ $query = "SELECT * FROM login_settings";
                         </div>
                         <div class="card-body">
                             <div class="dt-responsive table-responsive">
-
-
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section>
-
-
-
-
 
     <script src="assets/js/vendor-all.min.js"></script>
     <script src="assets/js/plugins/bootstrap.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
-    <!--<script src="assets/js/menu-setting.min.js"></script>-->
 
     <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
     <script src="assets/js/plugins/dataTables.bootstrap4.min.js"></script>
@@ -321,7 +259,6 @@ $query = "SELECT * FROM login_settings";
 
     <script>
         function InvalidMsg(textbox) {
-
             if (textbox.value == '') {
                 textbox.setCustomValidity('Required email address');
             } else if (textbox.validity.typeMismatch) {
@@ -333,91 +270,48 @@ $query = "SELECT * FROM login_settings";
         }
     </script>
 
-</body>
-<script>
-    function checkUserAvailability() {
-        $("#loader").show();
-        jQuery.ajax({
-            url: "check.php",
-            data: 'username=' + $("#username").val(),
-            type: "POST",
-            success: function(data) {
-                if (data == 1) {
-                    $("#user-availability-status").html(
-                        "<div class='alert alert-danger'> <i class=' feather  icon icon-info'></i> &nbsp;Username already exists in our record.</div>"
-                    );
-                    $("#user-availability-status").removeClass('available');
-                    $("#user-availability-status").addClass('not-available');
-                    $("#submit").attr('disabled', true);
-                } else {
-                    $("#user-availability-status").html(
-                        "<div class='alert alert-success' ><i class='feather icon-check'></i> &nbsp;Username is Available.</div>"
-                    );
-                    $("#user-availability-status").removeClass('not-available');
-                    $("#user-availability-status").addClass('available');
-                    $("#submit").attr('disabled', false);
-                }
-                $("#loader").hide();
-            },
-            error: function() {}
-        });
-    }
-</script>
-<script>
-    $(document).ready(function() {
-        $("#goldmessage").delay(5000).slideUp(300);
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $("#successMessage").delay(5000).slideUp(300);
-    });
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const roleSelect = document.getElementById("role_id");
-        const employeeDiv = document.getElementById("employeeDropdown");
-        const employeeSelect = document.getElementById("employee_id");
-
-        roleSelect.addEventListener("change", function() {
-            const selectedRoleId = this.value;
-
-            if (selectedRoleId) {
-                // Send Ajax to check if this role is 'employee'
-                fetch("get-role-type.php", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        body: "role_id=" + selectedRoleId
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.role_name === "employee") {
-                            employeeDiv.style.display = "block";
-                            loadEmployees();
-                        } else {
-                            employeeDiv.style.display = "none";
-                            employeeSelect.innerHTML = "<option value=''>Choose an Employee</option>";
-                        }
-                    });
-            }
-        });
-
-        function loadEmployees() {
-            fetch("get-employees.php")
-                .then(res => res.json())
-                .then(data => {
-                    let options = "<option value=''>Choose an Employee</option>";
-                    data.forEach(emp => {
-                        options += `<option value="${emp.personal_id}">${emp.name}</option>`;
-                    });
-                    employeeSelect.innerHTML = options;
-                });
+    <script>
+        function checkUserAvailability() {
+            $("#loader").show();
+            jQuery.ajax({
+                url: "check.php",
+                data: 'username=' + $("#username").val(),
+                type: "POST",
+                success: function(data) {
+                    if (data == 1) {
+                        $("#user-availability-status").html(
+                            "<div class='alert alert-danger'> <i class=' feather  icon icon-info'></i> &nbsp;Username already exists in our record.</div>"
+                        );
+                        $("#user-availability-status").removeClass('available');
+                        $("#user-availability-status").addClass('not-available');
+                        $("#submit").attr('disabled', true);
+                    } else {
+                        $("#user-availability-status").html(
+                            "<div class='alert alert-success' ><i class='feather icon-check'></i> &nbsp;Username is Available.</div>"
+                        );
+                        $("#user-availability-status").removeClass('not-available');
+                        $("#user-availability-status").addClass('available');
+                        $("#submit").attr('disabled', false);
+                    }
+                    $("#loader").hide();
+                },
+                error: function() {}
+            });
         }
+    </script>
+    
+    <script>
+        $(document).ready(function() {
+            $("#goldmessage").delay(5000).slideUp(300);
+        });
+    </script>
+    
+    <script>
+        $(document).ready(function() {
+            $("#successMessage").delay(5000).slideUp(300);
+        });
+    </script>
 
-    });
-</script>
 
+</body>
 </html>

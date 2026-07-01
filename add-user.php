@@ -20,9 +20,9 @@ require("db/config.php");
 
 // Register user
 if (isset($_POST['submit'])) {
-    // echo '<pre>';
-    // print_r($_POST);
-    // exit;
+    echo '<pre>';
+    print_r($_POST);
+    exit;
     $name = strip_tags($_POST['username']);
     $password = md5($_POST['password']);
     $mobile = $_POST['mobile'];

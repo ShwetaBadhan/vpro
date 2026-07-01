@@ -1,0 +1,169 @@
+[08-Jan-2021 12:12:47 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (111) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 12:12:47 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 12:12:47 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 12:12:47 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 12:12:47 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:08 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:10 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:11 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:12 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:13 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:14 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:15 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 6
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 7
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/load.php on line 8
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 6
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 7
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadmembers.php on line 8
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 9
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/db/config.php on line 11
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 12
+[08-Jan-2021 17:15:16 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/h9o227txlafy/public_html/brofinindia.com/admin/loadgold.php on line 13
+[09-Jan-2021 18:49:18 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/dashboard.php on line 16
+[10-Jan-2021 14:46:34 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/view-user.php on line 12
+[10-Jan-2021 14:46:35 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/view-user.php on line 12
+[10-Jan-2021 14:46:42 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/changepass.php on line 17
+[10-Jan-2021 14:46:49 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/view_gold.php on line 12
+[13-Feb-2021 05:48:31 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/view_gold.php on line 12
+[18-Feb-2021 06:58:07 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/view_gold.php on line 12
+[02-Mar-2021 09:57:52 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/view_gold.php on line 12
+[02-Mar-2021 12:04:00 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/gold-edit.php on line 14
+[06-Oct-2021 03:32:16 UTC] PHP Notice:  Undefined index: login_user in /home/h9o227txlafy/public_html/brofinindia.com/admin/dashboard.php on line 16

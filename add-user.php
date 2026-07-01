@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
     $activationToken = bin2hex(random_bytes(16));
 
     // Step 1: Insert into admin table
-    $query = "INSERT INTO admin (username, password, email, status, history, type, mobile, activation_token, admin_role, employee_id)
+    $query = "INSERT INTO admin (username, password, email, status, history, mobile, activation_token, admin_role, employee_id)
               VALUES ('$name', '$password', '$email', '$status', '$date', '$mobile', '$activationToken', '$role', '$employee_id')";
     $result = mysqli_query($db, $query);
 

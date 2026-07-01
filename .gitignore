@@ -1,6 +1,0 @@
-# Ignore database configuration files
-db/config.php
-
-# Optional: Ignore other sensitive files
-.env
-*.log

@@ -2,7 +2,7 @@
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
+// exit;
 //require_once "../vendor/autoload.php";
 
 //use PHPMailer\PHPMailer\PHPMailer;
@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
     $mobile = $_POST['mobile'];
     $email = strip_tags($_POST['email']);
     $status = strip_tags($_POST['status']);
-    $type = $_POST['brand'];
+    // $type = $_POST['brand'];
     $role = $_POST['admin_role'];
     $employee_id = $_POST['employee_id'] ?? null; // may be null if not employee role
     $date = date('m-d-Y ');
@@ -51,8 +51,8 @@ if (isset($_POST['submit'])) {
 
         $msg = "User has been successfully created.";
     } else {
-    die("MySQL Error: " . mysqli_error($db));
-}
+        $msg = "<div class='alert alert-danger'>Error in creating the user.</div>";
+    }
 }
 
 // Fetch roles from the database

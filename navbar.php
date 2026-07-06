@@ -177,7 +177,7 @@ if ($adminId) {
                         </ul>
                     </li>
                 <?php endif; ?> -->
-                <?php if ($isAdmin || in_array('Add New Service', $permissions) || in_array('All Service', $permissions) || in_array('All', $permissions)): ?>
+                <!-- <?php if ($isAdmin || in_array('Add New Service', $permissions) || in_array('All Service', $permissions) || in_array('All', $permissions)): ?>
                     <li class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link">
                             <span class="pcoded-micon"><i class="feather icon-briefcase"></i></span>
@@ -199,7 +199,7 @@ if ($adminId) {
                             <?php endif; ?>
                         </ul>
                     </li>
-                <?php endif; ?>
+                <?php endif; ?> -->
                 <!-- <?php if (
                             $isAdmin ||
                             in_array('Add New Client', $permissions) ||

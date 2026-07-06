@@ -65,11 +65,12 @@ if ($role_name == 'admin') {
     FROM admission_enquiry ae
     LEFT JOIN lead_assignments la ON ae.admission_id = la.admission_id
     LEFT JOIN admin a ON la.admin_id = a._id
+    WHERE DATE(ae.date) = CURDATE()
     ORDER BY ae.date DESC
     ";
     $result = mysqli_query($db, $query);
 } else {
-    // ✅ For all other roles, show only their assigned leads
+    // ✅ For all other roles, show only their assigned leads from TODAY
     $query = "
     SELECT 
         ae.admission_id,
@@ -87,7 +88,7 @@ if ($role_name == 'admin') {
     FROM admission_enquiry ae
     LEFT JOIN lead_assignments la ON ae.admission_id = la.admission_id
     LEFT JOIN admin a ON la.admin_id = a._id
-    WHERE la.admin_id = ?
+    WHERE la.admin_id = ? AND DATE(ae.date) = CURDATE()
     ORDER BY ae.date DESC
     ";
     $stmt = mysqli_prepare($db, $query);
@@ -99,7 +100,7 @@ if ($role_name == 'admin') {
 // Handle Lead Update (All fields)
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_lead'])) {
     $leadid = base64_decode($_POST['admission_id']);
-    
+
     // Get all form values
     $name = trim($_POST['name']);
     $mobile = trim($_POST['mobile']);
@@ -117,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_lead'])) {
         header('Location: admission-leads.php');
         exit;
     }
-    
+
     if (!preg_match("/^\d{10}$/", $mobile)) {
         $_SESSION['msg'] = '<div class="alert alert-danger">Invalid phone number. Must be 10 digits.</div>';
         header('Location: admission-leads.php');
@@ -142,45 +143,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_lead'])) {
         follow_up_stage = ?, 
         remarks = ? 
         WHERE admission_id = ?";
-    
+
     if ($stmt = mysqli_prepare($db, $update_query)) {
-        mysqli_stmt_bind_param($stmt, "sssssssssi", 
-            $name, 
-            $mobile, 
-            $email, 
-            $state, 
-            $city, 
-            $course_type, 
-            $leadstatus, 
-            $follow_up_stage, 
-            $remarks, 
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sssssssssi",
+            $name,
+            $mobile,
+            $email,
+            $state,
+            $city,
+            $course_type,
+            $leadstatus,
+            $follow_up_stage,
+            $remarks,
             $leadid
         );
-        
+
         if (mysqli_stmt_execute($stmt)) {
             $_SESSION['msg'] = '<div class="alert alert-success">Lead updated successfully!</div>';
-            
+
             // ✅ LOG THE CALL
             $call_date = date('Y-m-d');
             $call_time = date('H:i:s');
-            
+
             $log_query = "INSERT INTO call_logs 
                 (admin_id, username, admission_id, lead_name, lead_mobile, call_date, call_time, lead_status, follow_up_stage, remarks) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            
+
             if ($log_stmt = mysqli_prepare($db, $log_query)) {
                 mysqli_stmt_bind_param(
-                    $log_stmt, 
-                    "isisssssss", 
-                    $login_user_id, 
-                    $username, 
-                    $leadid, 
-                    $name, 
-                    $mobile, 
-                    $call_date, 
-                    $call_time, 
-                    $leadstatus, 
-                    $follow_up_stage, 
+                    $log_stmt,
+                    "isisssssss",
+                    $login_user_id,
+                    $username,
+                    $leadid,
+                    $name,
+                    $mobile,
+                    $call_date,
+                    $call_time,
+                    $leadstatus,
+                    $follow_up_stage,
                     $remarks
                 );
                 mysqli_stmt_execute($log_stmt);
@@ -269,7 +272,7 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
-    <title>Admission Leads</title>
+    <title>Leads</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -433,7 +436,7 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
                     <div class="card">
                         <div class="card-header table-card-header">
                             <div class="card-body">
-                                    <button type="button" class="btn btn-success ml-2" data-bs-toggle="modal" data-bs-target="#createLeadModal">
+                                <button type="button" class="btn btn-success ml-2" data-bs-toggle="modal" data-bs-target="#createLeadModal">
                                     <i class="feather icon-plus"></i> Create Lead
                                 </button>
                                 <hr>
@@ -477,6 +480,7 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
                                             <label for="followUpFilter" class="small mb-1">Follow-Up:</label>
                                             <select name="followUpFilter" id="followUpFilter" class="form-control form-control-sm" style="width: 160px;">
                                                 <option value="">All Stages</option>
+                                                <option value="Untouched">Untouched</option>
                                                 <option value="1st Contact">1st Contact</option>
                                                 <option value="2nd Contact">2nd Contact</option>
                                                 <option value="3rd Contact">3rd Contact</option>
@@ -529,7 +533,7 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
                                                     <th>NAME</th>
                                                     <th>STATE</th>
                                                     <th>CITY</th>
-                                                    <th>COURSE</th>
+                                                    <th>TREATMENT</th>
                                                     <th>REMARKS</th>
                                                     <th>STATUS</th>
                                                     <th>FOLLOW-UP</th>
@@ -571,9 +575,10 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
                                                     echo "<td>" . htmlspecialchars($row['course_type']) . "</td>";
                                                     echo "<td title='" . htmlspecialchars($row['remarks']) . "'>" . htmlspecialchars($shortRemarks) . "</td>";
                                                     echo "<td><span class='badge status-badge' style='background-color: $badgeColor; color: #fff;'>" . ucfirst($status) . "</span></td>";
-                                                    
+
                                                     // Follow-up stage badge colors
                                                     $followUpMap = [
+                                                        'Untouched' => '#A76545',
                                                         '1st Contact' => '#17a2b8',
                                                         '2nd Contact' => '#ffc107',
                                                         '3rd Contact' => '#FE7743',
@@ -633,7 +638,7 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
                 </div>
             </div>
     </section>
-    
+
     <!-- Bulk Assign Modal -->
     <div class="modal fade" id="bulkAssignModal" tabindex="-1" aria-labelledby="bulkAssignModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -680,86 +685,87 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
         </div>
     </div>
 
-  <!-- Edit Lead Modal - Updated with all fields -->
-<div class="modal fade" id="editLeadStatusModal" tabindex="-1" aria-labelledby="editLeadStatusModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Edit Lead</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-            </div>
-            <div class="modal-body">
-                <form method="post">
-                    <input type="hidden" id="edit_admission_id" name="admission_id">
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_name" class="form-label">Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="edit_name" name="name" required>
+    <!-- Edit Lead Modal - Updated with all fields -->
+    <div class="modal fade" id="editLeadStatusModal" tabindex="-1" aria-labelledby="editLeadStatusModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Lead</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        <input type="hidden" id="edit_admission_id" name="admission_id">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_name" class="form-label">Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_name" name="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_mobile" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_mobile" name="mobile" maxlength="10" pattern="\d{10}" required>
+                            </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_mobile" class="form-label">Phone Number <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="edit_mobile" name="mobile" maxlength="10" pattern="\d{10}" required>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_email" class="form-label">Email (Optional)</label>
+                                <input type="email" class="form-control" id="edit_email" name="email">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_course" class="form-label">Course <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_course" name="course_type" required>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_email" class="form-label">Email (Optional)</label>
-                            <input type="email" class="form-control" id="edit_email" name="email">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_state" class="form-label">State <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_state" name="state" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_city" class="form-label">City <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_city" name="city" required>
+                            </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_course" class="form-label">Course <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="edit_course" name="course_type" required>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_lead_status" class="form-label">Lead Status:</label>
+                                <select id="edit_lead_status" name="lead_status" class="form-control">
+                                    <!-- Options will be dynamically loaded here -->
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_follow_up_stage" class="form-label">Follow-Up Stage:</label>
+                                <select id="edit_follow_up_stage" name="follow_up_stage" class="form-control">
+                                    <option value="">-- Select Stage --</option>
+                                    <option value="Untouched">Untouched</option>
+                                    <option value="1st Contact">1st Contact</option>
+                                    <option value="2nd Contact">2nd Contact</option>
+                                    <option value="3rd Contact">3rd Contact</option>
+                                    <option value="4th Contact">4th Contact</option>
+                                    <option value="5th Contact">5th Contact</option>
+                                    <option value="6th Contact">6th Contact</option>
+                                    <option value="7th Contact">7th Contact</option>
+                                    <option value="Converted">Converted</option>
+                                    <option value="Lost">Lost</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_state" class="form-label">State <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="edit_state" name="state" required>
+
+                        <div class="mb-3">
+                            <label for="edit_remarks" class="form-label">Remarks:</label>
+                            <textarea id="edit_remarks" name="remarks" class="form-control" rows="3" placeholder="Enter remarks..."></textarea>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_city" class="form-label">City <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="edit_city" name="city" required>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_lead_status" class="form-label">Lead Status:</label>
-                            <select id="edit_lead_status" name="lead_status" class="form-control">
-                                <!-- Options will be dynamically loaded here -->
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_follow_up_stage" class="form-label">Follow-Up Stage:</label>
-                            <select id="edit_follow_up_stage" name="follow_up_stage" class="form-control">
-                                <option value="">-- Select Stage --</option>
-                                <option value="1st Contact">1st Contact</option>
-                                <option value="2nd Contact">2nd Contact</option>
-                                <option value="3rd Contact">3rd Contact</option>
-                                <option value="4th Contact">4th Contact</option>
-                                <option value="5th Contact">5th Contact</option>
-                                <option value="6th Contact">6th Contact</option>
-                                <option value="7th Contact">7th Contact</option>
-                                <option value="Converted">Converted</option>
-                                <option value="Lost">Lost</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="edit_remarks" class="form-label">Remarks:</label>
-                        <textarea id="edit_remarks" name="remarks" class="form-control" rows="3" placeholder="Enter remarks..."></textarea>
-                    </div>
-                    
-                    <button type="submit" name="update_lead" class="btn btn-primary">Update Lead</button>
-                </form>
+
+                        <button type="submit" name="update_lead" class="btn btn-primary">Update Lead</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -787,7 +793,7 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
             </div>
         </div>
     </div>
-    
+
     <!-- Alert Modal -->
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -805,7 +811,7 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
             </div>
         </div>
     </div>
-    
+
     <!-- Multi Delete Confirmation Modal -->
     <div class="modal fade" id="deleteSelectedModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
@@ -824,52 +830,67 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
             </div>
         </div>
     </div>
+<!-- Create Lead Modal -->
+<div class="modal fade" id="createLeadModal" tabindex="-1" aria-labelledby="createLeadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createLeadModalLabel">Create New Lead</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="" id="createLeadForm">
+                    <div class="mb-3">
+                        <label for="new_name" class="form-label">Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="new_name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="new_mobile" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="new_mobile" name="mobile" maxlength="10" pattern="\d{10}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="new_email" class="form-label">Email (Optional)</label>
+                        <input type="email" class="form-control" id="new_email" name="email">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="new_state" class="form-label">State <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="new_state" name="state" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="new_city" class="form-label">City <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="new_city" name="city" required>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="new_course" class="form-label">Treatment <span class="text-danger">*</span></label>
+                            <select class="custom-select form-control" name="course_type" id="new_course" required>
+                                <option value="" disabled selected>-- Select Treatment --</option>
+                                <option value="Autism">Autism</option>
+                                <option value="ADHD">ADHD</option>
+                                <option value="Speech Disorder">Speech Disorder</option>
+                                <option value="Behaviour Disorder">Behaviour Disorder</option>
+                                <option value="Cerebral Palsy">Cerebral Palsy</option>
+                                <option value="Brain Disorder">Brain Disorder</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
 
-    <!-- Create Lead Modal -->
-    <div class="modal fade" id="createLeadModal" tabindex="-1" aria-labelledby="createLeadModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="createLeadModalLabel">Create New Lead</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="">
-                        <div class="mb-3">
-                            <label for="new_name" class="form-label">Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="new_name" name="name" required>
+                        <!-- ✅ Other Treatment Textbox (Hidden by default) -->
+                        <div class="col-md-12 mb-3" id="otherTreatmentDiv" style="display: none;">
+                            <label for="other_treatment" class="form-label">Specify Treatment <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="other_treatment" name="other_treatment" placeholder="Enter treatment name...">
                         </div>
-                        <div class="mb-3">
-                            <label for="new_mobile" class="form-label">Phone Number <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="new_mobile" name="mobile" maxlength="10" pattern="\d{10}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="new_email" class="form-label">Email (Optional)</label>
-                            <input type="email" class="form-control" id="new_email" name="email">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="new_state" class="form-label">State <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="new_state" name="state" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="new_city" class="form-label">City <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="new_city" name="city" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="new_course" class="form-label">Course <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="new_course" name="course_type" required>
-                        </div>
+                    </div>
 
-                        <button type="submit" name="create_lead" class="btn btn-primary w-100">Create Lead</button>
-
-                    </form>
-                </div>
+                    <button type="submit" name="create_lead" class="btn btn-primary w-100">Create Lead</button>
+                </form>
             </div>
         </div>
     </div>
-    
+</div>
+
+
+
     <script src="assets/js/vendor-all.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
     <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
@@ -881,10 +902,61 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
     <script src="assets/js/plugins/dataTables.buttons.min.js"></script>
     <script src="assets/js/plugins/buttons.html5.min.js"></script>
     <script src="assets/js/plugins/buttons.bootstrap4.min.js"></script>
-    
+
     <!-- jQuery (Ensure it is loaded first) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
+  <!-- ✅ Corrected JavaScript -->
+<script>
+    const courseSelect = document.getElementById('new_course');
+    const otherDiv = document.getElementById('otherTreatmentDiv');
+    const otherInput = document.getElementById('other_treatment');
+    const form = document.getElementById('createLeadForm');
+
+    // Toggle textbox visibility
+    courseSelect.addEventListener('change', function () {
+        if (this.value === 'Other') {
+            otherDiv.style.display = 'block';
+            otherInput.setAttribute('required', 'required');
+            otherInput.focus();
+        } else {
+            otherDiv.style.display = 'none';
+            otherInput.removeAttribute('required');
+            otherInput.value = '';
+        }
+    });
+
+    // On form submit: swap the field names so backend receives custom value as course_type
+    form.addEventListener('submit', function (e) {
+        // Always reset state first (in case of previous failed submit)
+        courseSelect.disabled = false;
+        courseSelect.name = 'course_type';
+        otherInput.name = 'other_treatment';
+
+        if (courseSelect.value === 'Other') {
+            if (!otherInput.value.trim()) {
+                e.preventDefault();
+                alert('Please specify the treatment name.');
+                otherInput.focus();
+                return;
+            }
+            // ✅ Disable the select so it won't be submitted
+            courseSelect.disabled = true;
+            // ✅ Rename other_treatment → course_type so backend gets the custom value
+            otherInput.name = 'course_type';
+        }
+    });
+
+    // ✅ Reset everything when modal is closed (so next open starts fresh)
+    document.getElementById('createLeadModal').addEventListener('hidden.bs.modal', function () {
+        form.reset();
+        otherDiv.style.display = 'none';
+        otherInput.removeAttribute('required');
+        courseSelect.disabled = false;
+        courseSelect.name = 'course_type';
+        otherInput.name = 'other_treatment';
+    });
+</script>
     <script>
         let table;
 
@@ -953,7 +1025,7 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
             });
         });
     </script>
-    
+
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.js"></script>
 
@@ -991,62 +1063,62 @@ $favicon = $settings['favicon'] ?? 'assets/images/favicon.ico';
             });
         });
     </script>
-    
-   <script>
-$(document).ready(function() {
-    $(document).on("click", ".editLead", function() {
-        let admissionId = $(this).data("lead-id");
-        let name = $(this).data("name");
-        let mobile = $(this).data("mobile");
-        let email = $(this).data("email");
-        let state = $(this).data("state");
-        let city = $(this).data("city");
-        let course = $(this).data("course");
-        let currentStatus = $(this).data("status")?.toLowerCase().trim();
-        let followUpStage = $(this).data("follow-up")?.trim();
-        let remark = $(this).data("remark");
 
-        // Set all field values
-        $("#edit_admission_id").val(admissionId);
-        $("#edit_name").val(name);
-        $("#edit_mobile").val(mobile);
-        $("#edit_email").val(email);
-        $("#edit_state").val(state);
-        $("#edit_city").val(city);
-        $("#edit_course").val(course);
-        $("#edit_remarks").val(remark);
+    <script>
+        $(document).ready(function() {
+            $(document).on("click", ".editLead", function() {
+                let admissionId = $(this).data("lead-id");
+                let name = $(this).data("name");
+                let mobile = $(this).data("mobile");
+                let email = $(this).data("email");
+                let state = $(this).data("state");
+                let city = $(this).data("city");
+                let course = $(this).data("course");
+                let currentStatus = $(this).data("status")?.toLowerCase().trim();
+                let followUpStage = $(this).data("follow-up")?.trim();
+                let remark = $(this).data("remark");
 
-        // Set follow-up stage
-        if (followUpStage) {
-            $("#edit_follow_up_stage").val(followUpStage);
-        } else {
-            $("#edit_follow_up_stage").val('');
-        }
+                // Set all field values
+                $("#edit_admission_id").val(admissionId);
+                $("#edit_name").val(name);
+                $("#edit_mobile").val(mobile);
+                $("#edit_email").val(email);
+                $("#edit_state").val(state);
+                $("#edit_city").val(city);
+                $("#edit_course").val(course);
+                $("#edit_remarks").val(remark);
 
-        // Fetch lead status options
-        $.ajax({
-            url: "fetch_lead_status.php",
-            method: "GET",
-            success: function(data) {
-                $("#edit_lead_status").html(data);
+                // Set follow-up stage
+                if (followUpStage) {
+                    $("#edit_follow_up_stage").val(followUpStage);
+                } else {
+                    $("#edit_follow_up_stage").val('');
+                }
 
-                // Find and select the matching option
-                $("#edit_lead_status option").each(function() {
-                    if ($(this).val().toLowerCase().trim() === currentStatus) {
-                        $(this).prop("selected", true);
-                        return false;
+                // Fetch lead status options
+                $.ajax({
+                    url: "fetch_lead_status.php",
+                    method: "GET",
+                    success: function(data) {
+                        $("#edit_lead_status").html(data);
+
+                        // Find and select the matching option
+                        $("#edit_lead_status option").each(function() {
+                            if ($(this).val().toLowerCase().trim() === currentStatus) {
+                                $(this).prop("selected", true);
+                                return false;
+                            }
+                        });
+
+                        $("#editLeadStatusModal").modal("show");
+                    },
+                    error: function() {
+                        alert("Error fetching lead statuses.");
                     }
                 });
-
-                $("#editLeadStatusModal").modal("show");
-            },
-            error: function() {
-                alert("Error fetching lead statuses.");
-            }
+            });
         });
-    });
-});
-</script>
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -1162,7 +1234,7 @@ $(document).ready(function() {
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <script>
         document.getElementById('assigselected').addEventListener('click', function() {
             const checkboxes = document.querySelectorAll('input.menuCheckbox:checked');

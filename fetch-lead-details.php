@@ -15,6 +15,7 @@ if (isset($_POST['id'])) {
         admission_enquiry.email,
         admission_enquiry.mobile,
         admission_enquiry.course_type,
+        admission_enquiry.symptoms,
         admission_enquiry.remarks,
 
         admission_enquiry.city,
@@ -39,13 +40,14 @@ if (isset($_POST['id'])) {
         echo "   <tr><th>Name</th><td>{$lead['name']}</td></tr>";
         echo "  <tr><th>Email</th><td>{$lead['email']}</td></tr>";
         echo "  <tr><th>Mobile</th><td>{$lead['mobile']}</td></tr>";
-        echo " <tr><th>Course</th><td>{$lead['course_type']}</td></tr>";
+        echo " <tr><th>Treatment</th><td>{$lead['course_type']}</td></tr>";
+        echo " <tr><th>Symptoms</th><td>{$lead['symptoms']}</td></tr>";
 
         echo "  <tr><th>City</th><td>{$lead['city']}</td></tr>";
        echo "<tr><th>Date</th><td>" . date('d-m-Y', strtotime($lead['date'])) . "</td></tr>";
         echo "  <tr><th>Lead Status</th>";
 
-        $status = strtolower($lead['lead_status']); // Normalize status name
+        $status = strtolower($lead['lead_status']); 
 
         $badgeMap = [
             'untouched' => '#FF0B55',

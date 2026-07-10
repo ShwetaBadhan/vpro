@@ -940,7 +940,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="edit_mobile" class="form-label">Phone Number</label>
-                                    <input type="text" class="form-control" id="edit_mobile" name="mobile" maxlength="15">
+                                    <input type="text" class="form-control" id="edit_mobile" name="mobile" >
                                 </div>
                             </div>
 
@@ -1117,7 +1117,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="new_mobile" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" id="new_mobile" name="mobile" maxlength="15">
+                                <input type="text" class="form-control" id="new_mobile" name="mobile" >
                             </div>
                             <div class="mb-3">
                                 <label for="new_email" class="form-label">Email (Optional)</label>

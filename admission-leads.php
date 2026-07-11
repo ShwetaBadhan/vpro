@@ -37,7 +37,7 @@
     // Set permissions based on role
     $can_assign_leads = false;
     $can_delete_leads = false;
-    $can_download_leads = false;
+    $can_download_leads = true;
 
     // Logic based on role
     if ($role_name == 'admin') {

@@ -1,6 +1,7 @@
     <?php
     // error_reporting(E_ALL);
     session_start();
+    date_default_timezone_set('Asia/Kolkata');
     require_once 'db/config.php';
 
     if (!isset($_SESSION['login_user_id'])) {
@@ -101,92 +102,92 @@
         $result = mysqli_stmt_get_result($stmt);
     }
     // Handle Lead Update (All fields) - NO VALIDATION
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_lead'])) {
-        $leadid = base64_decode($_POST['admission_id']);
+    // if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_lead'])) {
+    //     $leadid = base64_decode($_POST['admission_id']);
 
-        // Get all form values
-        $name = trim($_POST['name']);
-        $mobile = trim($_POST['mobile']);
-        $email = !empty($_POST['email']) ? trim($_POST['email']) : '';
-        $state = trim($_POST['state']);
-        $city = trim($_POST['city']);
-        $course_type = trim($_POST['course_type']);
-        $leadstatus = $_POST['lead_status'];
-        $follow_up_stage = !empty($_POST['follow_up_stage']) ? $_POST['follow_up_stage'] : null;
-        $remarks = trim($_POST['remarks']);
-        $symptoms = !empty($_POST['symptoms']) ? trim($_POST['symptoms']) : '';
-        $history = !empty($_POST['history']) ? trim($_POST['history']) : '';
+    //     // Get all form values
+    //     $name = trim($_POST['name']);
+    //     $mobile = trim($_POST['mobile']);
+    //     $email = !empty($_POST['email']) ? trim($_POST['email']) : '';
+    //     $state = trim($_POST['state']);
+    //     $city = trim($_POST['city']);
+    //     $course_type = trim($_POST['course_type']);
+    //     $leadstatus = $_POST['lead_status'];
+    //     $follow_up_stage = !empty($_POST['follow_up_stage']) ? $_POST['follow_up_stage'] : null;
+    //     $remarks = trim($_POST['remarks']);
+    //     $symptoms = !empty($_POST['symptoms']) ? trim($_POST['symptoms']) : '';
+    //     $history = !empty($_POST['history']) ? trim($_POST['history']) : '';
 
-        // ✅ UPDATE ALL LEAD FIELDS - NO VALIDATION
-        $update_query = "UPDATE admission_enquiry SET 
-        name = ?, 
-        mobile = ?, 
-        email = ?, 
-        state = ?, 
-        city = ?, 
-        course_type = ?, 
-        lead_status = ?, 
-        follow_up_stage = ?, 
-        remarks = ?,
-        symptoms = ?,
-        history = ?
-        WHERE admission_id = ?";
+    //     // ✅ UPDATE ALL LEAD FIELDS - NO VALIDATION
+    //     $update_query = "UPDATE admission_enquiry SET 
+    //     name = ?, 
+    //     mobile = ?, 
+    //     email = ?, 
+    //     state = ?, 
+    //     city = ?, 
+    //     course_type = ?, 
+    //     lead_status = ?, 
+    //     follow_up_stage = ?, 
+    //     remarks = ?,
+    //     symptoms = ?,
+    //     history = ?
+    //     WHERE admission_id = ?";
 
-        if ($stmt = mysqli_prepare($db, $update_query)) {
-            mysqli_stmt_bind_param(
-                $stmt,
-                "sssssssssssi",
-                $name,
-                $mobile,
-                $email,
-                $state,
-                $city,
-                $course_type,
-                $leadstatus,
-                $follow_up_stage,
-                $remarks,
-                $symptoms,
-                $history,
-                $leadid
-            );
+    //     if ($stmt = mysqli_prepare($db, $update_query)) {
+    //         mysqli_stmt_bind_param(
+    //             $stmt,
+    //             "sssssssssssi",
+    //             $name,
+    //             $mobile,
+    //             $email,
+    //             $state,
+    //             $city,
+    //             $course_type,
+    //             $leadstatus,
+    //             $follow_up_stage,
+    //             $remarks,
+    //             $symptoms,
+    //             $history,
+    //             $leadid
+    //         );
 
-            if (mysqli_stmt_execute($stmt)) {
-                $_SESSION['msg'] = '<div class="alert alert-success">Lead updated successfully!</div>';
+    //         if (mysqli_stmt_execute($stmt)) {
+    //             $_SESSION['msg'] = '<div class="alert alert-success">Lead updated successfully!</div>';
 
-                // ✅ LOG THE CALL
-                $call_date = date('Y-m-d');
-                $call_time = date('H:i:s');
+    //             // ✅ LOG THE CALL
+    //             $call_date = date('Y-m-d');
+    //             $call_time = date('H:i:s');
 
-                $log_query = "INSERT INTO call_logs 
-                (admin_id, username, admission_id, lead_name, lead_mobile, call_date, call_time, lead_status, follow_up_stage, remarks) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    //             $log_query = "INSERT INTO call_logs 
+    //             (admin_id, username, admission_id, lead_name, lead_mobile, call_date, call_time, lead_status, follow_up_stage, remarks) 
+    //             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                if ($log_stmt = mysqli_prepare($db, $log_query)) {
-                    mysqli_stmt_bind_param(
-                        $log_stmt,
-                        "isisssssss",
-                        $login_user_id,
-                        $username,
-                        $leadid,
-                        $name,
-                        $mobile,
-                        $call_date,
-                        $call_time,
-                        $leadstatus,
-                        $follow_up_stage,
-                        $remarks
-                    );
-                    mysqli_stmt_execute($log_stmt);
-                    mysqli_stmt_close($log_stmt);
-                }
-            } else {
-                $_SESSION['msg'] = '<div class="alert alert-danger">Error updating lead.</div>';
-            }
-            mysqli_stmt_close($stmt);
-        }
-        header('Location: admission-leads.php');
-        exit;
-    }
+    //             if ($log_stmt = mysqli_prepare($db, $log_query)) {
+    //                 mysqli_stmt_bind_param(
+    //                     $log_stmt,
+    //                     "isisssssss",
+    //                     $login_user_id,
+    //                     $username,
+    //                     $leadid,
+    //                     $name,
+    //                     $mobile,
+    //                     $call_date,
+    //                     $call_time,
+    //                     $leadstatus,
+    //                     $follow_up_stage,
+    //                     $remarks
+    //                 );
+    //                 mysqli_stmt_execute($log_stmt);
+    //                 mysqli_stmt_close($log_stmt);
+    //             }
+    //         } else {
+    //             $_SESSION['msg'] = '<div class="alert alert-danger">Error updating lead.</div>';
+    //         }
+    //         mysqli_stmt_close($stmt);
+    //     }
+    //     header('Location: admission-leads.php');
+    //     exit;
+    // }
 
     // Handle Create Lead
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_lead'])) {
@@ -940,7 +941,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="edit_mobile" class="form-label">Phone Number</label>
-                                    <input type="text" class="form-control" id="edit_mobile" name="mobile" >
+                                    <input type="text" class="form-control" id="edit_mobile" name="mobile">
                                 </div>
                             </div>
 
@@ -1117,7 +1118,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="new_mobile" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" id="new_mobile" name="mobile" >
+                                <input type="text" class="form-control" id="new_mobile" name="mobile">
                             </div>
                             <div class="mb-3">
                                 <label for="new_email" class="form-label">Email (Optional)</label>
